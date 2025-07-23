@@ -30,6 +30,8 @@ db.connectToMysql = connectToMysql
 db.Student = Student(connectToMysql,DataTypes)
 db.Teacher = Teacher(connectToMysql,DataTypes)
 
+db.Teacher.hasMany(db.Student)
+db.Student.belongsTo(db.Teacher)
 
 module.exports = db
 
