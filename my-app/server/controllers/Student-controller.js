@@ -5,56 +5,61 @@ const {Student} = require ('../models/');
 const getAll = async(req,res)=> {
 try {
   const students = await Student.findAll();
-  res.status(200).json({message : "Teachers fetched",students})
+  res.status(200).send(students)
 } catch (error) {
-  res.status(404).json(error)
+  res.status(404).send(error)
   throw error
 }
+
 }
+
+
 
 
 const getOne = async (req,res)=> {
   const {id} = req.params
 try {
   const student =  await Student.findByPk(id);
-  res.status(200).json({message : "Student fetched",student})
+  res.status(200).send(student)
 } catch (error) {
-  res.status(404).json(error)
+  res.status(404).send(error)
   throw error
 }
 }
 
-const createOne = async (req,res) => {
-   const {body} = req.body
+const addOne = async (req,res) => {
+const {name,type,picture,behavior,greenPin,bluePin,redPin,teacherId} = req.body
    try {
-  const student =  await Student.create(body);
-  res.status(201).json({message : "Student created",student})
+  const student =  await Student.create({name,type,picture,behavior,greenPin,bluePin,redPin,teacherId});
+  res.status(201).send(student)
 } catch (error) {
-  res.status(404).json(error)
+  res.status(404).send(error)
   throw error
 } 
 }
 
 const removeOne = async (req,res) => {
      const {id} = req.params
+     
 try {
-  const student =  await Student.destroy({where : id});
-  res.status(200).json({message : "Student destroyed",student})
+  const student =  await Student.destroy({where : {id : id}});
+  res.status(204).send("Student removed")
 } catch (error) {
-  res.status(404).json(error)
+  res.status(404).send(error)
   throw error
 }
 }
 
 const modifyOne = async (req,res) => {
      const {id} = req.params
-     const {body} = req.body
+     const {name,type,picture,behavior,greenPin,bluePin,redPin} = req.body
 
 try {
-  const student =  await Student.update(body,{where : id});
-  res.status(200).json({message : "Student modified",student})
+  const student =  await Student.update({name,type,picture,behavior,greenPin,bluePin,redPin},
+    {where : {id : id} });
+  res.status(204).send(student)
 } catch (error) {
-  res.status(404).json(error)
+  res.status(404).send(error)
   throw error
 }
 
@@ -62,4 +67,4 @@ try {
 
 
 
-module.exports = {getAll,getOne,createOne,removeOne,modifyOne}
+module.exports = {getAll,getOne,addOne,removeOne,modifyOne}
