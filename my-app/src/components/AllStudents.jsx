@@ -7,6 +7,6 @@ const AllStudents = ({ students ,removeStudent ,getPins}) => {
       {students.length>0 ? 
       (students.map((student) => (
        <StudentDetails key={student.id} getPins ={getPins} student={student} removeStudent={removeStudent} />
-        ))) : (<div>Loading...</div>)}</div>)}
+        ))) : (<div>?</div>)}</div>)}
 
 export default AllStudents

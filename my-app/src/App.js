@@ -21,15 +21,20 @@ function App() {
 
 
   const getPins=(greenPin,bluePin,redPin)=>{
-
+    setGreenPin(greenPin)
+    setBluePin(bluePin)
+    setRedPin(redPin)
   }
 
 
 
   const addStudent = async (body) => {
-    console.log('body',body)
+  const studentData = {...body,greenPin,bluePin,redPin}
+
+    console.log('studentData',studentData)
     try {
-      const res = await axios.post(`http://localhost:3000/api/students`, body)
+  
+      const res = await axios.post(`http://localhost:3000/api/students`, studentData)
       setStudents([...students, res.data])
       fetchStudents()
       setView('addstudent')

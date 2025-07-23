@@ -6,14 +6,24 @@ const PinSys = ({student,removeStudent,getPins}) => {
   const [redPin, setRedPins] = useState(0)
 
 
-  getPins(greenPin,bluePin,redPin)  
+ useEffect(() => {
+    
+    getPins(greenPin,bluePin,redPin)
+  }, []); 
+
+  
 
   const addGreen = () => {
-    if (greenPin < 3) {
+    if (greenPin < 3)  {
       setGreenPins(greenPin + 1)
     } else {
       setGreenPins(0)
-      setBluePins(bluePin + 1)
+      if(bluePin<3) {setBluePins(bluePin + 1)}
+
+      else{
+        setBluePins(0)
+        setRedPins(redPin + 1)
+    }   
     }
   }
 
@@ -22,7 +32,7 @@ const PinSys = ({student,removeStudent,getPins}) => {
       setBluePins(bluePin + 1)
     } else {
       setBluePins(0)
-      setRedPins(redPin + 1)
+      if(redPin < 3){setRedPins(redPin + 1)}
     }
   }
 
@@ -39,20 +49,18 @@ const PinSys = ({student,removeStudent,getPins}) => {
     >
       <div className="pin-card">
         <div>
-          <img src="../../public/img/green_pin.png"alt="Green Pin"className="pin-image"onClick={addGreen}/>{greenPin}
+          <img src="https://www.iconexperience.com/_img/v_collection_png/256x256/shadow/pin2_green.png"alt="Green Pin"className="pin-image"onClick={addGreen}/>{greenPin}
         </div>
         <div>
-          <img src="../../public/img/blue_pin.png" alt="Blue Pin"className="pin-image"onClick={addBlue}/>   {bluePin}
+          <img src="https://www.iconexperience.com/_img/v_collection_png/256x256/shadow/pin2_blue.png" alt="Blue Pin"className="pin-image"onClick={addBlue}/>   {bluePin}
         </div>
-        <div><img src="../../public/img/red_pin.png" alt="Red Pin"className="pin-image" onClick={addRed}/>  {redPin}
+        <div><img src="https://www.iconexperience.com/_img/v_collection_png/256x256/shadow/pin2_red.png" alt="Red Pin"className="pin-image" onClick={addRed}/>  {redPin}
         </div>
       </div>
-         {redPin === 3 && (
-        <div className="crossed-out">Student is out!</div>
-      )}
+         {redPin === 3 && ( removeStudent(student.id))}
 
       </div>
   )
 }
 
-export default PinSys;
+export default PinSys
