@@ -47,10 +47,10 @@ try {
 
 const modifyOne = async (req,res) => {
      const {id} = req.params
-     const {name,type,picture,behavior,greenPin,bluePin,redPin} = req.body
+     const {name} = req.body
 
 try {
-  const teacher =  await Teacher.update({name,type,picture,behavior,greenPin,bluePin,redPin},
+  const teacher =  await Teacher.update(name,
     {where : {id : id} });
   res.status(204).send(teacher)
 } catch (error) {

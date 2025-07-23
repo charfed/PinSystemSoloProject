@@ -28,9 +28,9 @@ try {
 }
 
 const addOne = async (req,res) => {
-const {name,type,picture,behavior,greenPin,bluePin,redPin,teacherId} = req.body
+const {name,type,sex,picture,behavior,greenPin,bluePin,redPin,teacherId} = req.body
    try {
-  const student =  await Student.create({name,type,picture,behavior,greenPin,bluePin,redPin,teacherId});
+  const student =  await Student.create({name,type,sex,picture,behavior,greenPin,bluePin,redPin,teacherId});
   res.status(201).send(student)
 } catch (error) {
   res.status(404).send(error)
