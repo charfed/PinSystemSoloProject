@@ -22,15 +22,14 @@ const AddStudent = ({addStudent}) => {
         className="input-field"
       required/>
       
-      <label className="file-label">
-        {picture ? picture.name : "set up pic"}
         <input
-          type="file"
-          accept="image"
-          onChange={(e) => setPicture(e.target.files[0])}
-          className="file-input"
-        />
-      </label>
+        type="text"
+        name="picture"
+        placeholder="image URL"
+        value={picture}
+        onChange={(e) => setPicture(e.target.value)} 
+        className="input-field"
+      />
 
       <button type="submit" className="btn btn-success">
         Add Student

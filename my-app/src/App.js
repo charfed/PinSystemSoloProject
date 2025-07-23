@@ -7,7 +7,9 @@ import AddStudent from './components/AddStudent.jsx'
 function App() {
   const [students, setStudents] = useState([])
   const [view, setView] = useState("allstudents")
-
+  const [greenPin,setGreenPin] = useState('')
+  const [bluePin,setBluePin] = useState('')
+  const [redPin,setRedPin] = useState('')
     const fetchStudents = async () => {
     try {
       const res = await axios.get(`http://localhost:3000/api/students`)
@@ -18,19 +20,23 @@ function App() {
   }
 
 
+  const getPins=(greenPin,bluePin,redPin)=>{
+
+  }
+
 
 
   const addStudent = async (body) => {
-    console
-  //   try {
-  //     const res = await axios.post(`http://localhost:3000/api/students`, body)
-  //     setStudents([...students, res.data])
-  //     fetchStudents()
-  //     setView('addstudent')
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+    console.log('body',body)
+    try {
+      const res = await axios.post(`http://localhost:3000/api/students`, body)
+      setStudents([...students, res.data])
+      fetchStudents()
+      setView('addstudent')
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const removeStudent = async (id) => {
     try {
@@ -51,12 +57,6 @@ function App() {
       console.log(error)
     }
   }
-
-
-
-
-
-
 
 
   useEffect(() => {
@@ -87,7 +87,7 @@ function App() {
             List of Students
           </div>
         </nav>
-        {view === "allstudents" && <AllStudents students={students} removeStudent={removeStudent} />}
+        {view === "allstudents" && <AllStudents getPins={getPins} students={students} removeStudent={removeStudent} />}
         {view === "addstudent" && <AddStudent addStudent={addStudent}/>}
       </header>
     </div>

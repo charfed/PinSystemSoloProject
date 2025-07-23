@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
 
-body {
+  body {
   margin: 0;
   font-family: 'Inter', sans-serif;
   background-color: #000000ef;
@@ -32,7 +32,8 @@ h1.student-list {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.nav-selected, .nav-unselected {
+.nav-selected,
+.nav-unselected {
   font-weight: 600;
   font-size: 3rem;
   color: #fbd6d6;
@@ -44,159 +45,96 @@ h1.student-list {
   opacity: 0.6;
 }
 
-.nav-selected:hover, .nav-unselected:hover {
+.nav-selected:hover,
+.nav-unselected:hover {
   opacity: 1;
   text-decoration: underline;
 }
 
-.student-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+.pin-system {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
+  margin-top: 20px;
 }
 
-.student-list-item {
+.pin-card {
   background-color: #31011450;
   border-radius: 12px;
   padding: 25px;
   box-shadow: 0 4px 12px rgba(247, 240, 240, 0.772);
   transition: transform 0.2s ease-in-out;
+  width: 200px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.student-list-item:hover {
+.pin-card:hover {
   transform: translateY(-5px);
 }
 
-.student-list-item-title {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 10px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.pin-card img {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
 }
 
-.student-list-item-byline {
-  font-size: 0.9rem;
-  color: #e2dada;
-  margin-bottom: 15px;
+.pin-card img:hover {
+  transform: scale(1.2);
 }
 
-.student-list-item-lede {
+.pin-card .pin-info {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.card-crossed {
   position: relative;
-  width: 100%;
-  overflow: hidden;
+  border: 2px solid red;
+  background-color: rgba(255, 0, 0, 0.2);
 }
 
-.student-list-item-lede img {
+.card-crossed::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  max-height: 200px;
-  border-radius: 8px;
-  margin-top: 10px;
-  display: block;
+  background: rgba(255, 0, 0, 0.5);
+  transform: rotate(45deg);
+  z-index: 1;
 }
 
-form {
+.pin-card .crossed-out {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 5px;
+  z-index: 2;
+}
+
+.pin-buttons {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.search, .student {
-  padding: 10px 15px;
-  color: rgb(255, 255, 255);
-  font-size: 2.5rem;
-  border-radius: 6px;
-  border: 1px solid #5b5b5b;
-  transition: border-color 0.3s;
-  background-color: #2423240f;
-}
-
-.search:focus, .student:focus {
-  border-color: #4a148c;
-  outline: none;
-  background-color: #030106;
-}
-
-textarea.student {
-  height: 120px;
-  resize: vertical;
-}
-
-.btn,
-input.btn {
-  padding: 10px 18px;
-  margin: 0;
-  font-size: 0.95rem;
-  font-weight: 600;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  color: #ededed;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.817);
-}
-
-.btn-secondary,
-input.btn-secondary {
-  background-color: #181414;
-}
-
-.btn-secondary:hover,
-input.btn-secondary:hover {
-  background-color: #c0ccd2;
-  transform: translateY(-2px);
-}
-
-.btn-danger,
-input.btn-danger {
-  background-color: #e53935;
-}
-
-.btn-danger:hover,
-input.btn-danger:hover {
-  background-color: #b71c1c;
-  transform: translateY(-2px);
-}
-
-.card-buttons {
-  display: flex;
-  justify-content: flex-end;
+  justify-content: space-evenly;
   gap: 10px;
-  margin-top: 15px;
-}
-
-.cd-popup {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s 0s, visibility 0s 0.3s;
-}
-
-.cd-popup.is-visible {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.3s 0s, visibility 0s 0s;
-}
-
-.cd-popup-container {
-  transform: translateY(-40px);
-  transition-property: transform;
-  transition-duration: 0.3s;
-}
-
-.is-visible .cd-popup-container {
-  transform: translateY(0);
+  margin-top: 10px;
 }
 
 .pin-btn {
   background: transparent;
   border: none;
-  padding: 0;
+  padding: 10px;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease, filter 0.2s ease;
-  outline: none;
 }
 
 .pin-btn:hover {
@@ -225,13 +163,25 @@ input.btn-danger:hover {
   fill: red;
 }
 
+.btn-danger {
+  background-color: #e53935;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
 
+.btn-danger:hover {
+  background-color: #8e1717;
+}
 
 .file-label {
   display: inline-block;
   padding: 6px 12px;
-  background-color: #6a1b9a;  
-  color: white;  
+  background-color: #6a1b9a;
+  color: white;
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
@@ -243,9 +193,34 @@ input.btn-danger:hover {
 }
 
 .file-label:hover {
-  background-color: #8e24aa; 
+  background-color: #8e24aa;
 }
 
 .file-label:active {
   transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  .pin-card {
+    width: 150px;
+    padding: 15px;
+  }
+
+  .pin-card img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .pin-system {
+    gap: 10px;
+  }
+
+  .pin-btn {
+    padding: 8px;
+  }
+
+  .pin-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
