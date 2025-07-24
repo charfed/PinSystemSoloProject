@@ -46,13 +46,15 @@ try {
 }
 
 const modifyOne = async (req,res) => {
+  
      const {id} = req.params
      const {name} = req.body
+
 
 try {
   const teacher =  await Teacher.update(name,
     {where : {id : id} });
-  res.status(204).send(teacher)
+  res.status(201).send(teacher)
 } catch (error) {
   res.status(404).send(error)
   throw error

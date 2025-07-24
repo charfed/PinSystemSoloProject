@@ -4,41 +4,39 @@
     const [greenPin, setGreenPins] = useState(0)
     const [bluePin, setBluePins] = useState(0)
     const [redPin, setRedPins] = useState(0)
-    const [behavior,setBehavior] = useState("unkown")
 
 
-    useEffect(() => {
-        
-        getPins(greenPin,bluePin,redPin,behavior)
-    }, [greenPin, bluePin, redPin, behavior]); 
 
-    const unkownBehavior = ()=> {
-        let behave = ''
-         if( greenPin===0  && bluePin===0 && redPin===0){
-        behave = "excellent"
-    }
-    else if(greenPin>3  && bluePin===0 && redPin===0){
-        behave = "not bad"
-    }
-    else if(greenPin===0  && bluePin>3 && redPin===0){
-        behave = "bad"
-    }
-    else if(greenPin===0  && bluePin===0 && redPin>3){
-        behave = "very bad"
-    }
 
-    else if(greenPin===0  && bluePin===0 && redPin===3){
-        behave = "delinquent"
-    }
-    setBehavior(behave)
-    getPins(greenPin,bluePin,redPin)
-    }
-    
+    // const [behavior,setBehavior] = useState("unkown")
+
+
+//     const unkownBehavior = ()=> {
+//     let behave = ''
+//     if(greenPin  === 3) {
+//       behave = 'not bad '
+//     }
+//    else if (bluePin ===3) {
+//       behave = 'bad '
+//     } 
+//   else if(redPin  === 3) {
+//       behave = 'delinquent'
+//   }    
+
+//     setBehavior(behave)
+
+//     }
+        const pins = {greenPin,bluePin,redPin}
+
+        // const testing = ()=>{
+        //    getPins(pins)
+        //  } 
+
 
    
      useEffect(() => {
-        unkownBehavior()
-}, [greenPin, bluePin, redPin])
+        // unkownBehavior()
+     }, [greenPin, bluePin, redPin])
 
 
     const addGreen = () => {
@@ -66,6 +64,8 @@
 
     const addRed = () => {
         setRedPins(redPin + 1)
+        setBluePins(0)
+        setGreenPins(0)
     }
 
 
@@ -75,15 +75,16 @@
         >
         <div className="pin-card">
             <div>
-            <img src="https://www.iconexperience.com/_img/v_collection_png/256x256/shadow/pin2_green.png"alt="Green Pin"className="pin-image"onClick={addGreen}/>{greenPin}
+            <img src="https://www.iconexperience.com/_img/v_collection_png/256x256/shadow/pin2_green.png"alt="Green Pin"className="pin-image"onClick={addGreen}/>   {greenPin}
             </div>
             <div>
-            <img src="https://www.iconexperience.com/_img/v_collection_png/256x256/shadow/pin2_blue.png" alt="Blue Pin"className="pin-image"onClick={addBlue}/>   {bluePin}
+            <img src="https://www.iconexperience.com/_img/v_collection_png/256x256/shadow/pin2_blue.png" alt="Blue Pin"className="pin-image"onClick={addBlue}/>     {bluePin}
             </div>
             <div><img src="https://www.iconexperience.com/_img/v_collection_png/256x256/shadow/pin2_red.png" alt="Red Pin"className="pin-image" onClick={addRed}/>  {redPin}
             </div>
         </div>
-            {redPin === 3 && ( removeStudent(student.id))}
+             {redPin === 2 && <h3 className="warning">warning are-sure you want to remove the student ?!</h3>} 
+            {redPin === 3 && ( removeStudent(student.id) )}
 
         </div>
     )

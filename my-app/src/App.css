@@ -5,6 +5,7 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: #000000ef;
   color: #fff7f7;
+  cursor: default !important;
 }
 
 .App {
@@ -142,12 +143,15 @@ input.btn {
   font-size: 0.95rem;
   font-weight: 600;
   border-radius: 8px;
+  width: 200px;
   border: none;
   cursor: pointer;
   color: #ededed;
   transition: all 0.3s ease-in-out;
   box-shadow: 0 2px 6px rgba(255, 255, 255, 0.817);
 }
+
+
 
 .btn-danger,
 input.btn-danger {
@@ -167,7 +171,7 @@ input.btn-warning {
 
 .btn-warning:hover,
 input.btn-warning:hover {
-  background-color: #057033;
+  background-color: #d9dfdc;
   transform: translateY(-2px);
 }
 
@@ -224,7 +228,7 @@ input.btn-warning:hover {
 }
 
 .pin-btn.green svg {
-  fill: green;
+  fill: rgb(230, 230, 230);
 }
 
 .pin-btn.blue svg {
@@ -233,6 +237,10 @@ input.btn-warning:hover {
 
 .pin-btn.red svg {
   fill: red;
+}
+
+button, .pin-image, .btn {
+  cursor: default !important;
 }
 
 .pin-system .pin-card .pin-image {
@@ -290,25 +298,24 @@ input.btn-warning:hover {
   }
 }
 
-.file-label {
-  display: inline-block;
-  padding: 6px 12px;
-  background-color: #6a1b9a;  
-  color: white;  
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: 10px;
-  max-width: 150px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+.warning {
+  font-weight: bold;
+  font-size: 1.5em;  /* Make the warning text bigger */
+  text-align: center;  /* Center the warning message */
+  color: red;  /* Default color (in case animation doesn't work initially) */
+  margin-top: 20px;  /* Add space between the pins and the warning */
+  padding: 10px;
+  background-color: rgba(255, 0, 0, 0.1);  /* Light red background */
+  border: 2px solid red;  /* Add a border to make it stand out */
+  border-radius: 8px;  /* Round the corners for better aesthetics */
+  animation: colorChange 0.4s infinite alternate;  /* Apply the color animation */
 }
 
-.file-label:hover {
-  background-color: #8e24aa;
-}
-
-.file-label:active {
-  transform: scale(0.98);
+@keyframes colorChange {
+  0% {
+    color: red;  /* Starting color (red) */
+  }
+  100% {
+    color: white;  /* Ending color (white) */
+  }
 }

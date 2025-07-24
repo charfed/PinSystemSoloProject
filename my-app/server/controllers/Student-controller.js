@@ -1,5 +1,36 @@
-const {Student} = require ('../models/');
+const { Op } = require('sequelize');
+const {Student ,Sequelize} = require ('../models/');
 
+
+
+const searchStudents = async (req,res)=> {
+
+  console.log("queeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeery",req.query)
+
+  const { name, type, genre, behavior } = req.query
+console.log("filrter",req.query)
+
+  try {
+    const searchTerm = {}
+    if(name){
+      searchTerm.name = {[Op.like] : `%${name}%`}
+    }
+    if(behavior){
+      searchTerm.behavior = {[Op.like] : `%${behavior}%`}
+    }
+    if(genre){
+      searchTerm.genre = genre
+    }
+    const students =  await Student.findAll({where :searchTerm})
+    
+    return res.status(200).send(students)
+
+  } catch (error) {
+    res.send(404).send("not found")
+  }
+
+
+}
 
 
 const getAll = async(req,res)=> {
@@ -25,9 +56,9 @@ try {
 }
 
 const addOne = async (req,res) => {
-const {name,type,sex,picture,behavior,greenPin,bluePin,redPin,teacherId} = req.body
+const {name,status,genre,picture,behavior,greenPin,bluePin,redPin,teacherId} = req.body
    try {
-  const student =  await Student.create({name,type,sex,picture,behavior,greenPin,bluePin,redPin,teacherId});
+  const student =  await Student.create({name,status,genre,picture,behavior,greenPin,bluePin,redPin,teacherId});
   res.status(201).send(student)
 } catch (error) {
   res.status(404).send(error)
@@ -45,16 +76,21 @@ try {
   res.status(404).send(error)
   throw error
 }
+
 }
 
 const modifyOne = async (req,res) => {
+
      const {id} = req.params
-     const {name,type,sex,picture,behavior,greenPin,bluePin,redPin} = req.body
+     const {name,status,genre,picture,behavior,greenPin,bluePin,redPin} = req.body
+     
 
 try {
-  const student =  await Student.update({name,type,sex,picture,behavior,greenPin,bluePin,redPin},
+  
+  
+  const student =  await Student.update({name,status,genre,picture,behavior,greenPin,bluePin,redPin},
     {where : {id : id} });
-  res.status(204).send(student)
+  res.status(201).send(student)
 } catch (error) {
   res.status(404).send(error)
   throw error
@@ -64,4 +100,4 @@ try {
 
 
 
-module.exports = {getAll,getOne,addOne,removeOne,modifyOne}
+module.exports = {getAll,getOne,addOne,removeOne,modifyOne,searchStudents}

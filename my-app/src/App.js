@@ -3,14 +3,16 @@ import axios from 'axios'
 import './App.css'
 import AllStudents from './components/AllStudents.jsx'
 import AddStudent from './components/AddStudent.jsx'
+import UpdateStudent from './components/UpdateStudent.jsx'
+import SearchStudent from './components/SearchStudent.jsx'
+import TeacherLogin from './components/TeacherLogin.jsx'
 
 function App() {
   const [students, setStudents] = useState([])
+  const [student, setStudent] = useState({})
   const [view, setView] = useState("allstudents")
-  const [greenPin,setGreenPin] = useState('')
-  const [bluePin,setBluePin] = useState('')
-  const [redPin,setRedPin] = useState('')
-  const [behavior,setBehavior]= useState('')
+  
+
     const fetchStudents = async () => {
     try {
       const res = await axios.get(`http://localhost:3000/api/students`)
@@ -20,23 +22,21 @@ function App() {
     }
   }
 
+ const SearchByNSB = async ( {name,genre,behavior} ) => {
 
-  const getPins=(greenPin,bluePin,redPin,behavior)=>{
-    setGreenPin(greenPin)
-    setBluePin(bluePin)
-    setRedPin(redPin)
-    setBehavior(behavior)
-  }
-
-
-
+   try {
+      const res = await axios.get(`http://localhost:3000/api/students/sear?name=${name}&genre=${genre}&behavior=${behavior}`)
+      // console.log("res",res.data)
+      setStudents(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+ }
   const addStudent = async (body) => {
-  const studentData = {...body,greenPin,bluePin,redPin,behavior}
-
-    console.log('studentData',studentData)
+      
     try {
   
-      const res = await axios.post(`http://localhost:3000/api/students`, studentData)
+      const res = await axios.post(`http://localhost:3000/api/students`, body)
       setStudents([...students, res.data])
       fetchStudents()
       setView('addstudent')
@@ -54,19 +54,23 @@ function App() {
     }
   }
 
-  const modifyStudent = async (id, body) => {
+  const modifyStudent = async (id, student) => {
+    console.log("fffffffffffffffffffffffff",)
     try {
-      const res = await axios.put(`http://localhost:3000/api/students/${id}`, body)
+      const res = await axios.put(`http://localhost:3000/api/students/${id}`, student)
       setStudents([...students, res.data])
       fetchStudents()
-      setView('updatestudent')
+      setView('allstudents')
     } catch (error) {
       console.log(error)
     }
   }
 
-  const updateSt = ()=> {
-
+  const updateSt = (student)=> {
+    // console.log("student",student)
+    setStudent(student)
+    setView("updatestudent")
+    
   }
 
 
@@ -75,18 +79,19 @@ function App() {
   }, [])
 
 
-
-
-
-
+const changeBack = ()=> {
+  setView("allstudents")
+}
 
 
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1 className="student-list main">Students</h1>
+        <h1 className="student-list main">Proper pinning system</h1>
         <nav className="nav">
+          <SearchStudent SearchByNSB={SearchByNSB}/>
+
           <div
             className={view !== "addstudent" ? "nav-unselected" : "nav-selected"}
             onClick={() => setView("addstudent")}
@@ -100,8 +105,10 @@ function App() {
             List of Students
           </div>
         </nav>
-        {view === "allstudents" && <AllStudents updateSt={updateSt} getPins={getPins} students={students} removeStudent={removeStudent} />}
-        {view === "addstudent" && <AddStudent addStudent={addStudent}/>}
+       {view   === "allstudents"    && <AllStudents  updateSt={updateSt} /* getPins={getPins} */students={students} removeStudent={removeStudent} />}
+        {view  === "addstudent"    && <AddStudent changeBack={changeBack} addStudent={addStudent}/>}
+        {view  === "updatestudent" && <UpdateStudent modifyStudent={modifyStudent} student={student}/>}
+      
       </header>
     </div>
   )
