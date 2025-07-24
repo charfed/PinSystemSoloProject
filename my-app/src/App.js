@@ -10,6 +10,7 @@ function App() {
   const [greenPin,setGreenPin] = useState('')
   const [bluePin,setBluePin] = useState('')
   const [redPin,setRedPin] = useState('')
+  const [behavior,setBehavior]= useState('')
     const fetchStudents = async () => {
     try {
       const res = await axios.get(`http://localhost:3000/api/students`)
@@ -20,16 +21,17 @@ function App() {
   }
 
 
-  const getPins=(greenPin,bluePin,redPin)=>{
+  const getPins=(greenPin,bluePin,redPin,behavior)=>{
     setGreenPin(greenPin)
     setBluePin(bluePin)
     setRedPin(redPin)
+    setBehavior(behavior)
   }
 
 
 
   const addStudent = async (body) => {
-  const studentData = {...body,greenPin,bluePin,redPin}
+  const studentData = {...body,greenPin,bluePin,redPin,behavior}
 
     console.log('studentData',studentData)
     try {
@@ -52,7 +54,7 @@ function App() {
     }
   }
 
-  const updateStudent = async (id, body) => {
+  const modifyStudent = async (id, body) => {
     try {
       const res = await axios.put(`http://localhost:3000/api/students/${id}`, body)
       setStudents([...students, res.data])
@@ -63,10 +65,16 @@ function App() {
     }
   }
 
+  const updateSt = ()=> {
+
+  }
+
 
   useEffect(() => {
     fetchStudents()
   }, [])
+
+
 
 
 
@@ -92,7 +100,7 @@ function App() {
             List of Students
           </div>
         </nav>
-        {view === "allstudents" && <AllStudents getPins={getPins} students={students} removeStudent={removeStudent} />}
+        {view === "allstudents" && <AllStudents updateSt={updateSt} getPins={getPins} students={students} removeStudent={removeStudent} />}
         {view === "addstudent" && <AddStudent addStudent={addStudent}/>}
       </header>
     </div>
