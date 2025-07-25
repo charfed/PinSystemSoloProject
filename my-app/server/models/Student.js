@@ -14,7 +14,8 @@ const Student = Sequelize.define(
     greenPin :{type: DataTypes.INTEGER,defaultValue:0},  // class 1 pin , small warning
     bluePin  :{type: DataTypes.INTEGER,defaultValue:0},  // class 2 pin , medium warning
     redPin   :{type: DataTypes.INTEGER,defaultValue:0},  // class 3 pin , bigger warning // 3 and you are out ...
-    },
+    Warning  :{type :DataTypes.STRING}// Warning message ...
+  },
     {
       timestamps: false,
     }  )

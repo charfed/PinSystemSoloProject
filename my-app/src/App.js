@@ -55,7 +55,6 @@ function App() {
   }
 
   const modifyStudent = async (id, student) => {
-    console.log("fffffffffffffffffffffffff",)
     try {
       const res = await axios.put(`http://localhost:3000/api/students/${id}`, student)
       setStudents([...students, res.data])
@@ -65,6 +64,18 @@ function App() {
       console.log(error)
     }
   }
+
+const addPins = async (id,student) => {
+  try {
+      const res = await axios.put(`http://localhost:3000/api/students/${id}`, student)
+      setStudents([...students, res.data])
+      fetchStudents()
+    } catch (error) {
+      console.log(error)
+    }
+}  
+
+
 
   const updateSt = (student)=> {
     // console.log("student",student)
@@ -105,9 +116,9 @@ const changeBack = ()=> {
             List of Students
           </div>
         </nav>
-       {view   === "allstudents"    && <AllStudents  updateSt={updateSt} /* getPins={getPins} */students={students} removeStudent={removeStudent} />}
+        {view  === "allstudents"    && <AllStudents addPins={addPins}  updateSt={updateSt} students={students} removeStudent={removeStudent} />}
         {view  === "addstudent"    && <AddStudent changeBack={changeBack} addStudent={addStudent}/>}
-        {view  === "updatestudent" && <UpdateStudent modifyStudent={modifyStudent} student={student}/>}
+        {view  === "updatestudent" && <UpdateStudent changeBack={changeBack} modifyStudent={modifyStudent} student={student}/>}
       
       </header>
     </div>

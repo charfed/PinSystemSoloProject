@@ -1,6 +1,6 @@
 import PinSys from "./PinSys";
 
-const StudentDetails = ({ student, removeStudent, getPins ,updateSt }) => {
+const StudentDetails = ({ student, removeStudent, updateSt ,addPins }) => {
   return (
     <div className="student-list-item">
       <div className="card-buttons">
@@ -19,7 +19,7 @@ const StudentDetails = ({ student, removeStudent, getPins ,updateSt }) => {
           <p className="student-type">behavior: {student?.behavior}</p>
         </div>
 
-        <PinSys getPins={getPins} removeStudent={removeStudent} student={student} />
+        <PinSys addPins={addPins} removeStudent={removeStudent} student={student} />
       </div>
     </div>
   )

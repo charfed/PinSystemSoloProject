@@ -1,93 +1,135 @@
-    import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
-    const PinSys = ({student,removeStudent,getPins}) => {
-    const [greenPin, setGreenPins] = useState(0)
-    const [bluePin, setBluePins] = useState(0)
-    const [redPin, setRedPins] = useState(0)
-
-
+const PinSys = ({student,removeStudent,addPins}) => {
+  const [greenPin, setGreenPins] = useState(student.greenPin)
+  const [bluePin, setBluePins] = useState(student.bluePin)
+  const [redPin, setRedPins] = useState(student.redPin)
 
 
-    // const [behavior,setBehavior] = useState("unkown")
-
-
-//     const unkownBehavior = ()=> {
-//     let behave = ''
-//     if(greenPin  === 3) {
-//       behave = 'not bad '
-//     }
-//    else if (bluePin ===3) {
-//       behave = 'bad '
-//     } 
-//   else if(redPin  === 3) {
-//       behave = 'delinquent'
-//   }    
-
-//     setBehavior(behave)
-
-//     }
-        const pins = {greenPin,bluePin,redPin}
-
-        // const testing = ()=>{
-        //    getPins(pins)
-        //  } 
-
-
-   
-     useEffect(() => {
-        // unkownBehavior()
-     }, [greenPin, bluePin, redPin])
-
-
-    const addGreen = () => {
-        if (greenPin < 3)  {
-        setGreenPins(greenPin + 1) 
-        } else {
-        setGreenPins(0)
-        if(bluePin<3) {setBluePins(bluePin + 1)}
-
-        else{
-            setBluePins(0)
-            setRedPins(redPin + 1)
-        }   
-        }
-    }
-
-    const addBlue = () => {
-        if (bluePin < 3) {
-        setBluePins(bluePin + 1)
-        } else {
+  const addGreen = () => {
+    if (greenPin < 3) {
+      setGreenPins(Number(greenPin) + 1)
+    } else {
+      setGreenPins(0)
+      if (bluePin < 3) {
+        setBluePins(Number(bluePin) + 1)
+      } else {
         setBluePins(0)
-        if(redPin < 3){setRedPins(redPin + 1)}
-        }
+        setRedPins(Number(redPin) + 1)
+      }
     }
+  }
 
-    const addRed = () => {
-        setRedPins(redPin + 1)
-        setBluePins(0)
-        setGreenPins(0)
+  const minusGreen = () => {
+    if (greenPin > 0) {setGreenPins(Number(greenPin) - 1)}
+  }
+
+  const addBlue = () => {
+    if (bluePin < 3) {
+      setBluePins(Number(bluePin) + 1)
+    } else {
+      setBluePins(0)
+      if (redPin < 3) {
+        setRedPins(Number(redPin) + 1)
+      }
     }
+  }
+
+  const minusBlue = () => {
+    if (bluePin > 0) {setBluePins(Number(bluePin) - 1)}
+  }
+
+  const addRed = () => {
+    setRedPins(redPin + 1)
+    setBluePins(0)
+    setGreenPins(0)
+  }
+
+  const minusRed = () => {
+    if (redPin > 0) {setRedPins(Number(redPin) - 1)}
+  }
 
 
-    return (
-        <div
-        className="pin-system"
-        >
+ const changeBackVals = () => {
+    setRedPins(student.greenPin)
+    setBluePins(student.redPin)
+    setGreenPins(student.bluePin)
+ }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    addPins(student.id,{greenPin,bluePin,redPin})
+  }
+
+
+  useEffect(() => {
+    if (redPin === 3) {
+      removeStudent(student.id)
+    }
+  }, [redPin, removeStudent, student.id])
+
+  return (
+    <div className="pin-system">
+      <form onSubmit={handleSubmit} className="add-student-form">
         <div className="pin-card">
-            <div>
-            <img src="https://www.iconexperience.com/_img/v_collection_png/256x256/shadow/pin2_green.png"alt="Green Pin"className="pin-image"onClick={addGreen}/>   {greenPin}
+
+          <div className="pin-box">
+            <img
+              src="img/green_pin.png"
+              alt="Green Pin"
+              className="pin-image green"
+            />
+            <div className="pin-controls">
+              <button type="button" className="pin-adjust minus" onClick={minusGreen}>−</button>
+              <button type="button" className="pin-adjust plus" onClick={addGreen}>+</button>
             </div>
-            <div>
-            <img src="https://www.iconexperience.com/_img/v_collection_png/256x256/shadow/pin2_blue.png" alt="Blue Pin"className="pin-image"onClick={addBlue}/>     {bluePin}
+           <span className="pin-count">{greenPin}</span>
+          </div>
+
+          <div className="pin-box">
+            <img
+              src="img/blue_pin.png"
+              alt="Blue Pin"
+              className="pin-image blue"
+            />
+            <div className="pin-controls">
+              <button type="button" className="pin-adjust minus" onClick={minusBlue}>−</button>
+              <button type="button" className="pin-adjust plus" onClick={addBlue}>+</button>
             </div>
-            <div><img src="https://www.iconexperience.com/_img/v_collection_png/256x256/shadow/pin2_red.png" alt="Red Pin"className="pin-image" onClick={addRed}/>  {redPin}
+            <span className="pin-count">{bluePin}</span>
+          </div>
+
+          <div className="pin-box">
+             <img
+              src="img/red_pin.png"
+              alt="Red Pin"
+              className="pin-image red"
+            />
+            <div className="pin-controls">
+              <button type="button" className="pin-adjust minus" onClick={minusRed}>−</button>
+              <button type="button" className="pin-adjust plus" onClick={addRed}>+</button>
             </div>
-        </div>
-             {redPin === 2 && <h3 className="warning">warning are-sure you want to remove the student ?!</h3>} 
-            {redPin === 3 && ( removeStudent(student.id) )}
+            <span className="pin-count">{redPin}</span>
+          </div>
 
         </div>
-    )
-    }
 
-    export default PinSys
+        {redPin === 2 && (
+          <h3 className="warning">
+            Warning: Are you sure you want to remove the student?!
+          </h3>
+        )}
+      <div className="button-row">
+      <button type="submit" className="btn btn-success">
+          Save Pins
+        </button>
+        <button type="button" className="btn btn-secondary" onClick={changeBackVals}>
+          Cancel
+        </button>
+</div>   
+      </form>
+    </div>
+  )
+}
+
+export default PinSys

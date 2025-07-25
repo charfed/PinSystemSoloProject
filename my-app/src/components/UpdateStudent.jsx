@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-const UpdateStudent = ({student,modifyStudent}) => {
+const UpdateStudent = ({student,modifyStudent,changeBack}) => {
   const [name, setName] = useState(student?.name || "")
   const [picture,setPicture]=useState(student?.picture || "")
   const [behavior,setBehavior] = useState("unkown")
@@ -65,6 +65,9 @@ await  modifyStudent(student.id,{name,picture,status,genre,behavior})
       </select>
       <button type="submit" className="btn btn-success">
         update Student
+      </button>
+      <button type="button" className="btn btn-secondary" onClick={(e)=>changeBack()}>
+        Cancel
       </button>
     
     

@@ -7,7 +7,7 @@ const searchStudents = async (req,res)=> {
 
   console.log("queeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeery",req.query)
 
-  const { name, type, genre, behavior } = req.query
+  const { name, type, genre, behavior,greenPin,bluePin,redPin } = req.query
 console.log("filrter",req.query)
 
   try {
@@ -21,6 +21,16 @@ console.log("filrter",req.query)
     if(genre){
       searchTerm.genre = genre
     }
+    if(greenPin){
+      searchTerm.greenPin = greenPin
+    }
+    if(bluePin){
+      searchTerm.bluePin = bluePin
+    }
+    if(redPin){
+      searchTerm.redPin = redPin
+    }
+
     const students =  await Student.findAll({where :searchTerm})
     
     return res.status(200).send(students)
@@ -28,7 +38,6 @@ console.log("filrter",req.query)
   } catch (error) {
     res.send(404).send("not found")
   }
-
 
 }
 
@@ -56,9 +65,9 @@ try {
 }
 
 const addOne = async (req,res) => {
-const {name,status,genre,picture,behavior,greenPin,bluePin,redPin,teacherId} = req.body
+const {name,status,genre,picture,behavior,greenPin,bluePin,redPin,Warning,teacherId} = req.body
    try {
-  const student =  await Student.create({name,status,genre,picture,behavior,greenPin,bluePin,redPin,teacherId});
+  const student =  await Student.create({name,status,genre,picture,behavior,greenPin,bluePin,redPin,Warning,teacherId});
   res.status(201).send(student)
 } catch (error) {
   res.status(404).send(error)
@@ -82,13 +91,13 @@ try {
 const modifyOne = async (req,res) => {
 
      const {id} = req.params
-     const {name,status,genre,picture,behavior,greenPin,bluePin,redPin} = req.body
+     const {name,status,genre,picture,behavior,greenPin,bluePin,redPin,Warning} = req.body
      
 
 try {
   
   
-  const student =  await Student.update({name,status,genre,picture,behavior,greenPin,bluePin,redPin},
+  const student =  await Student.update({name,status,genre,picture,behavior,greenPin,bluePin,redPin,Warning},
     {where : {id : id} });
   res.status(201).send(student)
 } catch (error) {
