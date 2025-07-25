@@ -4,14 +4,15 @@ const PinSys = ({student,removeStudent,addPins}) => {
   const [greenPin, setGreenPins] = useState(student.greenPin)
   const [bluePin, setBluePins] = useState(student.bluePin)
   const [redPin, setRedPins] = useState(student.redPin)
-
+  const [warning,setWarning] = useState("")
+  
 
   const addGreen = () => {
-    if (greenPin < 3) {
+    if (greenPin < 5) {
       setGreenPins(Number(greenPin) + 1)
     } else {
       setGreenPins(0)
-      if (bluePin < 3) {
+      if (bluePin < 4) {
         setBluePins(Number(bluePin) + 1)
       } else {
         setBluePins(0)
@@ -25,7 +26,7 @@ const PinSys = ({student,removeStudent,addPins}) => {
   }
 
   const addBlue = () => {
-    if (bluePin < 3) {
+    if (bluePin < 4) {
       setBluePins(Number(bluePin) + 1)
     } else {
       setBluePins(0)
@@ -58,7 +59,7 @@ const PinSys = ({student,removeStudent,addPins}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addPins(student.id,{greenPin,bluePin,redPin})
+    addPins(student.id,{greenPin,bluePin,redPin,warning})
   }
 
 
@@ -67,6 +68,15 @@ const PinSys = ({student,removeStudent,addPins}) => {
       removeStudent(student.id)
     }
   }, [redPin, removeStudent, student.id])
+
+  useEffect(() => {
+  if (redPin === 2) {
+    setWarning("Warning: Are you sure you want to remove the student?!");
+  } else {
+    setWarning("");
+  }
+}, [redPin])
+
 
   return (
     <div className="pin-system">
@@ -116,7 +126,7 @@ const PinSys = ({student,removeStudent,addPins}) => {
 
         {redPin === 2 && (
           <h3 className="warning">
-            Warning: Are you sure you want to remove the student?!
+            {warning}
           </h3>
         )}
       <div className="button-row">

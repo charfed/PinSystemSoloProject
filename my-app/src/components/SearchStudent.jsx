@@ -1,10 +1,11 @@
 import React,{useState} from "react"
 
 const SearchStudent = ({SearchByNSB})=> {
+
   const [name, setName] = useState('');
   const [genre, setGenre] = useState('');
   const [behavior, setBehavior] = useState('');
-    
+
   
  const handleSearch =(e)=> {
     e.preventDefault()
@@ -13,6 +14,7 @@ const SearchStudent = ({SearchByNSB})=> {
   
   return(
         
+
   <div className="search-bar">
       <input
         type="text"
@@ -28,14 +30,15 @@ const SearchStudent = ({SearchByNSB})=> {
         <option value="female">Female</option>
       </select>
 
+
       <select value={behavior} onChange={(e) => setBehavior(e.target.value)}>
-        <option defaultValue="unkown">Unkown</option>
-        <option value="good">excellent</option>
+        <option defaultValue="">select behavior</option>
+        <option value="excellent">excellent</option>
         <option value="good">Good</option>
-        <option value="average">Average</option>
-        <option value="bad">Bad</option>
-        <option value="bad">very Bad</option>
-        <option value="bad">Delequint</option>
+        <option value="Average">Average</option>
+        <option value="Bad">Bad</option>
+        <option value="very Bad">very Bad</option>
+        <option value="Delequint">Delequint</option>
       </select>
 
       <button className="btn-warning" onClick={handleSearch}>Search</button>

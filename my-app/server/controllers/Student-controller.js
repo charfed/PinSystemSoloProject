@@ -5,9 +5,9 @@ const {Student ,Sequelize} = require ('../models/');
 
 const searchStudents = async (req,res)=> {
 
-  console.log("queeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeery",req.query)
+  // console.log("queeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeery",req.query)
 
-  const { name, type, genre, behavior,greenPin,bluePin,redPin } = req.query
+  const { name, genre, behavior} = req.query
 console.log("filrter",req.query)
 
   try {
@@ -21,15 +21,7 @@ console.log("filrter",req.query)
     if(genre){
       searchTerm.genre = genre
     }
-    if(greenPin){
-      searchTerm.greenPin = greenPin
-    }
-    if(bluePin){
-      searchTerm.bluePin = bluePin
-    }
-    if(redPin){
-      searchTerm.redPin = redPin
-    }
+
 
     const students =  await Student.findAll({where :searchTerm})
     

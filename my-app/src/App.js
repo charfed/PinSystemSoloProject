@@ -5,7 +5,7 @@ import AllStudents from './components/AllStudents.jsx'
 import AddStudent from './components/AddStudent.jsx'
 import UpdateStudent from './components/UpdateStudent.jsx'
 import SearchStudent from './components/SearchStudent.jsx'
-import TeacherLogin from './components/TeacherLogin.jsx'
+// import TeacherLogin from './components/TeacherLogin.jsx'
 
 function App() {
   const [students, setStudents] = useState([])
@@ -117,8 +117,8 @@ const changeBack = ()=> {
           </div>
         </nav>
         {view  === "allstudents"    && <AllStudents addPins={addPins}  updateSt={updateSt} students={students} removeStudent={removeStudent} />}
-        {view  === "addstudent"    && <AddStudent changeBack={changeBack} addStudent={addStudent}/>}
-        {view  === "updatestudent" && <UpdateStudent changeBack={changeBack} modifyStudent={modifyStudent} student={student}/>}
+        {view  === "addstudent"     && <AddStudent changeBack={changeBack} addStudent={addStudent}/>}
+        {view  === "updatestudent"  && <UpdateStudent changeBack={changeBack} modifyStudent={modifyStudent} student={student}/>}
       
       </header>
     </div>

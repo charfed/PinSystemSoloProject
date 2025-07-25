@@ -271,3 +271,80 @@ textarea.student {
   0% { color: red; }
   100% { color: white; }
 }
+
+
+label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #dddddd;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.input-field.search,
+select.input-field.search {
+  padding: 12px 16px;
+  color: #ffffff;
+  font-size: 1rem;
+  background-color: #181818;
+  border: 1px solid #444;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.input-field.search:focus {
+  outline: none;
+  border-color: #9b59b6;
+  background-color: #000000;
+  box-shadow: 0 0 5px rgba(155, 89, 182, 0.5);
+}
+
+select.input-field.search {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23cccccc' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+}
+
+select.input-field.search option {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+add-student-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-student-form .form-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.add-student-form label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #e0e0e0;
+  width: 120px;
+  text-align: right;
+}
+
+.add-student-form input,
+.add-student-form select {
+  padding: 6px 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #5b5b5b;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  flex: 1;
+  max-width: 400px;
+}

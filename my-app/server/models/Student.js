@@ -6,7 +6,7 @@ const Student = Sequelize.define(
   'student',
   {
     name:     {type: DataTypes.STRING,allowNull: false}, // name of the student
-    status:     {type: DataTypes.STRING,allowNull: false}, // type is student
+    status:     {type: DataTypes.STRING,allowNull: false,defaultValue:"student"}, // type is student
     picture : {type: DataTypes.STRING,allowNull: false}, // picture of the student
     genre     : {type: DataTypes.STRING,allowNull: false},
     // these are variable so I'll make them 
