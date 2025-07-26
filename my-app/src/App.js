@@ -59,7 +59,6 @@ function App() {
       const res = await axios.put(`http://localhost:3000/api/students/${id}`, student)
       setStudents([...students, res.data])
       fetchStudents()
-      setView('allstudents')
     } catch (error) {
       console.log(error)
     }
@@ -101,7 +100,6 @@ const changeBack = ()=> {
       <header className="App-header">
         <h1 className="student-list main">Proper pinning system</h1>
         <nav className="nav">
-          <SearchStudent SearchByNSB={SearchByNSB}/>
 
           <div
             className={view !== "addstudent" ? "nav-unselected" : "nav-selected"}
@@ -116,7 +114,8 @@ const changeBack = ()=> {
             List of Students
           </div>
         </nav>
-        {view  === "allstudents"    && <AllStudents addPins={addPins}  updateSt={updateSt} students={students} removeStudent={removeStudent} />}
+        {view  === "allstudents"    && <><SearchStudent SearchByNSB={SearchByNSB}/><AllStudents addPins={addPins}  updateSt={updateSt} students={students} removeStudent={removeStudent} />
+</>}
         {view  === "addstudent"     && <AddStudent changeBack={changeBack} addStudent={addStudent}/>}
         {view  === "updatestudent"  && <UpdateStudent changeBack={changeBack} modifyStudent={modifyStudent} student={student}/>}
       

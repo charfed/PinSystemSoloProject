@@ -5,7 +5,30 @@ const PinSys = ({student,removeStudent,addPins}) => {
   const [bluePin, setBluePins] = useState(student.bluePin)
   const [redPin, setRedPins] = useState(student.redPin)
   const [warning,setWarning] = useState("")
-  
+  const [behavior,setBehavior] = useState("")
+
+
+
+useEffect(() => {
+  const green = Number(greenPin)
+  const blue = Number(bluePin)
+  const red = Number(redPin)
+
+  if (red === 2) {
+    setBehavior("Delinquent")
+  } else if (red === 1 || blue >= 4) {
+    setBehavior("Bad")
+  } else if (blue >= 1  ||  green >= 4) {
+    setBehavior("Average")
+  } else if (green >= 1) {
+    setBehavior("Good")
+  } else if (green === 0 && blue === 0 && red === 0) {
+    setBehavior("Excellent")
+  } else {
+    setBehavior("unknown")
+  }
+}, [greenPin, bluePin, redPin])
+
 
   const addGreen = () => {
     if (greenPin < 5) {
@@ -59,7 +82,7 @@ const PinSys = ({student,removeStudent,addPins}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addPins(student.id,{greenPin,bluePin,redPin,warning})
+    addPins(student.id,{greenPin,bluePin,redPin,warning,behavior})
   }
 
 
@@ -123,6 +146,7 @@ const PinSys = ({student,removeStudent,addPins}) => {
           </div>
 
         </div>
+        <h4 className="behavior-display">Behavior: {behavior}</h4>
 
         {redPin === 2 && (
           <h3 className="warning">

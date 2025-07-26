@@ -16,7 +16,7 @@ console.log("filrter",req.query)
       searchTerm.name = {[Op.like] : `%${name}%`}
     }
     if(behavior){
-      searchTerm.behavior = {[Op.like] : `%${behavior}%`}
+      searchTerm.behavior = behavior
     }
     if(genre){
       searchTerm.genre = genre
