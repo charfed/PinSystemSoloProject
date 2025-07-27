@@ -3,14 +3,13 @@ import React, { useState } from "react";
 const UpdateStudent = ({ student, modifyStudent, changeBack }) => {
   const [name, setName] = useState(student.name || "");
   const [picture, setPicture] = useState(student.picture || "");
-  const [genre, setGenre] = useState(student.genre || "");
+  const [gender, setGender] = useState(student.gender || "");
   const [greenPin, setGreenPins] = useState(student.greenPin);
   const [bluePin, setBluePins] = useState(student.bluePin);
   const [redPin, setRedPins] = useState(student.redPin);
 
   if (!student.id) {
     console.error("-----makech mrigel------");
-    return null;
   }
 
   const handleSubmit = async (e) => {
@@ -18,12 +17,12 @@ const UpdateStudent = ({ student, modifyStudent, changeBack }) => {
     await modifyStudent(student.id, {
       name,
       picture,
-      genre,
+      gender,
       greenPin,
       bluePin,
       redPin,
-    });
-  };
+    })
+  }
 
   return (
     <form onSubmit={handleSubmit} className="add-student-form">
@@ -51,15 +50,15 @@ const UpdateStudent = ({ student, modifyStudent, changeBack }) => {
       </div>
 
       <div className="form-group">
-        <label>Genre</label>
+        <label>Gender</label>
         <select
-          name="genre"
-          value={genre}
-          onChange={(e) => setGenre(e.target.value)}
+          name="gender"
+          value={gender}
+          onChange={(e) => setGender(e.target.value)}
           required
         >
           <option defaultValue="" disabled>
-            Select genre
+            Select gender
           </option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
@@ -108,7 +107,7 @@ const UpdateStudent = ({ student, modifyStudent, changeBack }) => {
         </button>
       </div>
     </form>
-  );
-};
+  )
+}
 
 export default UpdateStudent;

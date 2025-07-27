@@ -8,7 +8,7 @@ const Student = Sequelize.define(
     name:     {type: DataTypes.STRING,allowNull: false}, // name of the student
     status:     {type: DataTypes.STRING,allowNull: false,defaultValue:"student"}, // type is student
     picture : {type: DataTypes.STRING,allowNull: false}, // picture of the student
-    genre     : {type: DataTypes.STRING,allowNull: false},
+    gender     : {type: DataTypes.STRING,allowNull: false},
     // these are variable so I'll make them 
     behavior :{type :DataTypes.STRING}, // behavior varies depending on the number of pins
     greenPin :{type: DataTypes.INTEGER,defaultValue:0},  // class 1 pin , small warning

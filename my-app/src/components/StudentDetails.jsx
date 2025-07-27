@@ -14,7 +14,7 @@ const StudentDetails = ({ student, removeStudent, updateSt ,addPins }) => {
         <div className="card-body">
           <img src={student.picture} alt="Student" className="student-image" />
           <h3 className="student-name">{student.name}</h3>
-          <p className="student-type">genre: {student.genre}</p>
+          <p className="student-type">gender: {student.gender}</p>
           <p className="student-type">status: {student.status}</p>
         </div>
 

@@ -22,16 +22,43 @@ function App() {
     }
   }
 
- const SearchByNSB = async ( {name,genre,behavior} ) => {
+ const searchByName = async ( storeName ) => {
 
    try {
-      const res = await axios.get(`http://localhost:3000/api/students/sear?name=${name}&genre=${genre}&behavior=${behavior}`)
+      const res = await axios.get(`http://localhost:3000/api/students/sear?name=${storeName}`)
       // console.log("res",res.data)
       setStudents(res.data)
     } catch (error) {
       console.log(error)
     }
  }
+
+ 
+ const filterByGender = async ( storeGender ) => {
+
+   try {
+      const res = await axios.get(`http://localhost:3000/api/students/sear?gender=${storeGender}`)
+      // console.log("res",res.data)
+      setStudents(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+ }
+
+
+  const filterByBehavior = async ( storeBehavior ) => {
+
+   try {
+      const res = await axios.get(`http://localhost:3000/api/students/sear?behavior=${storeBehavior}`)
+      // console.log("res",res.data)
+      setStudents(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+ }
+
+
+
   const addStudent = async (body) => {
       
     try {
@@ -114,7 +141,7 @@ const changeBack = ()=> {
             List of Students
           </div>
         </nav>
-        {view  === "allstudents"    && <><SearchStudent SearchByNSB={SearchByNSB}/><AllStudents addPins={addPins}  updateSt={updateSt} students={students} removeStudent={removeStudent} />
+        {view  === "allstudents"    && <><SearchStudent students={students} searchByName={searchByName} filterByGender={filterByGender} filterByBehavior={filterByBehavior} /><AllStudents addPins={addPins}  updateSt={updateSt} students={students} removeStudent={removeStudent} />
 </>}
         {view  === "addstudent"     && <AddStudent changeBack={changeBack} addStudent={addStudent}/>}
         {view  === "updatestudent"  && <UpdateStudent changeBack={changeBack} modifyStudent={modifyStudent} student={student}/>}

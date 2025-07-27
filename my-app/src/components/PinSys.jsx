@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 
 const PinSys = ({student,removeStudent,addPins}) => {
-  const [greenPin, setGreenPins] = useState(student.greenPin)
-  const [bluePin, setBluePins] = useState(student.bluePin)
-  const [redPin, setRedPins] = useState(student.redPin)
+  const [greenPin, setGreenPins] = useState(student.greenPin || 0)
+  const [bluePin, setBluePins] = useState(student.bluePin || 0)
+  const [redPin, setRedPins] = useState(student.redPin || 0)
   const [warning,setWarning] = useState("")
   const [behavior,setBehavior] = useState("")
 
@@ -64,9 +64,11 @@ useEffect(() => {
   }
 
   const addRed = () => {
+    if (redPin < 3) {
     setRedPins(redPin + 1)
     setBluePins(0)
     setGreenPins(0)
+    }
   }
 
   const minusRed = () => {
@@ -75,13 +77,13 @@ useEffect(() => {
 
 
  const changeBackVals = () => {
-    setRedPins(student.greenPin)
-    setBluePins(student.redPin)
-    setGreenPins(student.bluePin)
+    setRedPins(student.redPin)
+    setBluePins(student.bluePin)
+    setGreenPins(student.greenPin)
  }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     addPins(student.id,{greenPin,bluePin,redPin,warning,behavior})
   }
 
@@ -94,7 +96,7 @@ useEffect(() => {
 
   useEffect(() => {
   if (redPin === 2) {
-    setWarning("Warning: Are you sure you want to remove the student?!");
+    setWarning("Warning: one more red pin and the student is out of the class !")
   } else {
     setWarning("");
   }

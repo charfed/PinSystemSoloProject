@@ -3,11 +3,11 @@ import React, { useState } from "react";
 const AddStudent = ({ addStudent, changeBack }) => {
   const [name, setName] = useState("")
   const [picture, setPicture] = useState("")
-  const [genre, setGenre] = useState("")
+  const [gender, setGender] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addStudent({name,picture, genre})
+    addStudent({name,picture, gender})
   }
 
   return (
@@ -36,14 +36,14 @@ const AddStudent = ({ addStudent, changeBack }) => {
   </div>
 
   <div className="form-group">
-    <label>Genre</label>
+    <label>Gender</label>
     <select
-      name="genre"
-      value={genre}
-      onChange={(e) => setGenre(e.target.value)}
+      name="gender"
+      value={gender}
+      onChange={(e) => setGender(e.target.value)}
       required
     >
-      <option value="" disabled>Select genre</option>
+      <option value="" disabled>Select gender</option>
       <option value="Male">Male</option>
       <option value="Female">Female</option>
     </select>
