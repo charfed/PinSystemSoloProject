@@ -7,9 +7,9 @@
     const [behavior, setBehavior] = useState('');
 
 
-    console.log("name",name)
-    console.log("gender",gender)
-    console.log("behavior",behavior)
+    // console.log("name",name)
+    // console.log("gender",gender)
+    // console.log("behavior",behavior)
 
   const handleName = (e) => {
     const storeName = e.target.value
@@ -41,7 +41,7 @@
         />
         <select value={behavior} onChange={handleBehavior} >
           <option value="" disabled>select behavior </option>
-          <option value="Excellent">excellent</option>
+          <option value="Excellent">Excellent</option>
           <option value="Good">Good</option>
           <option value="Average">Average</option>
           <option value="Bad">Bad</option>

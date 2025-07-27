@@ -24,8 +24,6 @@ useEffect(() => {
     setBehavior("Good")
   } else if (green === 0 && blue === 0 && red === 0) {
     setBehavior("Excellent")
-  } else {
-    setBehavior("unknown")
   }
 }, [greenPin, bluePin, redPin])
 
@@ -148,7 +146,7 @@ useEffect(() => {
           </div>
 
         </div>
-        <h4 className="behavior-display">Behavior: {behavior}</h4>
+        <h5 className="behavior-display">Behavior: {behavior}</h5>
 
         {redPin === 2 && (
           <h3 className="warning">

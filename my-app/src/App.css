@@ -149,11 +149,13 @@ textarea.student {
 }
 
 .btn-warning {
-  background-color: #1aaa58;
+  background-color: #680e49;
+  color: #ffffff;
 }
 
 .btn-warning:hover {
-  background-color: #d9dfdc;
+  background-color: #920a63;
+  color: #ffffff;
   transform: translateY(-2px);
 }
 
@@ -262,7 +264,7 @@ textarea.student {
 
 .warning {
   font-weight: bold;
-  font-size: 1em;
+  font-size: 1.2em;
   text-align: center;
   color: red;
   margin-top: 20px;

@@ -66,7 +66,7 @@ function App() {
       const res = await axios.post(`http://localhost:3000/api/students`, body)
       setStudents([...students, res.data])
       fetchStudents()
-      setView('addstudent')
+      setView('allstudents')
     } catch (error) {
       console.log(error)
     }
@@ -86,6 +86,7 @@ function App() {
       const res = await axios.put(`http://localhost:3000/api/students/${id}`, student)
       setStudents([...students, res.data])
       fetchStudents()
+      setView('allstudents')
     } catch (error) {
       console.log(error)
     }
