@@ -1,28 +1,52 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 
 const UpdateStudent = ({ student, modifyStudent, changeBack }) => {
-  const [name, setName] = useState(student.name || "");
-  const [picture, setPicture] = useState(student.picture || "");
-  const [gender, setGender] = useState(student.gender || "");
-  const [greenPin, setGreenPins] = useState(student.greenPin);
-  const [bluePin, setBluePins] = useState(student.bluePin);
-  const [redPin, setRedPins] = useState(student.redPin);
+  const [name, setName] = useState(student.name || "")
+  const [picture, setPicture] = useState(student.picture || "")
+  const [gender, setGender] = useState(student.gender || "")
+  const [greenPin, setGreenPins] = useState(student.greenPin)
+  const [bluePin, setBluePins] = useState(student.bluePin)
+  const [redPin, setRedPins] = useState(student.redPin)
+  const [behavior,setBehavior] = useState(student.behavior)
+  const [warning,setWarning] = useState("")
+
+
 
   if (!student.id) {
-    console.error("-----makech mrigel------");
+    console.error("-----student mahouch mrigel------");
   }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await modifyStudent(student.id, {
-      name,
-      picture,
-      gender,
-      greenPin,
-      bluePin,
-      redPin,
-    })
-  }
+    await modifyStudent(student.id,
+    {name,picture,gender,greenPin,bluePin,redPin,behavior,warning})}
+
+
+  useEffect(() => {
+    const green = Number(greenPin)
+    const blue = Number(bluePin)
+    const red = Number(redPin)
+  
+    if (red === 2) {
+      setBehavior("Delinquent")
+    } else if (red === 1 || blue >= 4) {
+      setBehavior("Bad")
+    } else if (blue >= 1  ||  green >= 4) {
+      setBehavior("Average")
+    } else if (green >= 1) {
+      setBehavior("Good")
+    } else if (green === 0 && blue === 0 && red === 0) {
+      setBehavior("Excellent")
+    }
+  }, [greenPin, bluePin, redPin])
+
+
+  useEffect(() => {
+    if (redPin === 2) {
+      setWarning("Warning: one more red pin and the student is out of the class !")
+    } 
+  }, [redPin])
 
   return (
     <form onSubmit={handleSubmit} className="add-student-form">

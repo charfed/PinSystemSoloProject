@@ -142,8 +142,7 @@ const changeBack = ()=> {
             List of Students
           </div>
         </nav>
-        {view  === "allstudents"    && <><SearchStudent students={students} searchByName={searchByName} filterByGender={filterByGender} filterByBehavior={filterByBehavior} /><AllStudents addPins={addPins}  updateSt={updateSt} students={students} removeStudent={removeStudent} />
-</>}
+        {view  === "allstudents"    && <><SearchStudent students={students} searchByName={searchByName} filterByGender={filterByGender} filterByBehavior={filterByBehavior} /><AllStudents addPins={addPins}  updateSt={updateSt} students={students} removeStudent={removeStudent} /></>}
         {view  === "addstudent"     && <AddStudent changeBack={changeBack} addStudent={addStudent}/>}
         {view  === "updatestudent"  && <UpdateStudent changeBack={changeBack} modifyStudent={modifyStudent} student={student}/>}
       

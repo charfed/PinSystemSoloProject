@@ -56,16 +56,17 @@ h1.student-list {
   background-color: rgba(255, 255, 255, 0.1);
   text-decoration: none;
 }
+
 .student-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 4px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
 }
 
 .student-list-item {
   background-color: #31011450;
   border-radius: 12px;
-  padding: 25px;
+  padding: 16px;
   box-shadow: 0 4px 12px rgba(247, 240, 240, 0.772);
   transition: transform 0.2s ease-in-out;
 }
@@ -91,8 +92,8 @@ h1.student-list {
 
 .student-list-item-lede img {
   display: block;
-  max-width: 180px;
-  max-height: 180px;
+  max-width: 120px;
+  max-height: 120px;
   object-fit: cover;
   border-radius: 8px;
   margin: 10px auto;
@@ -182,16 +183,11 @@ textarea.student {
   opacity: 0.8;
 }
 
-.pin-btn.green svg { fill: rgb(230, 230, 230); }
-.pin-btn.blue svg { fill: blue; }
-.pin-btn.red svg { fill: red; }
 
 .pin-system .pin-card {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 20px;
-  margin-top: 10px;
 }
 
 .pin-system .pin-card > div {
@@ -279,7 +275,6 @@ textarea.student {
   0% { color: red; }
   100% { color: white; }
 }
-
 
 label {
   font-size: 1.2rem;
